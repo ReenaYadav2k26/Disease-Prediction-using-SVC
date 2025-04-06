@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog Post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #007bff;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #28a745;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #555;
+        }
+        ol, ul {
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        b {
+            color: #dc3545;
+        }
+        hr {
+            border-top: 2px solid #007bff;
+        }
+
+        /* Chatbot Container */
+        #chat-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+        }
+
+        /* Chatbox (Messages Area) */
+        #chatbox {
+            height: 350px;
+            overflow-y: auto;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Chat Messages */
+        .message {
+            display: block;
+            padding: 12px 15px;
+            border-radius: 20px;
+            max-width: 75%;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .user {
+            background-color: #007bff;
+            color: white;
+            align-self: flex-end;
+            text-align: right;
+            margin-left: auto;
+        }
+
+        .bot {
+            background-color: #F371F9;
+            color: black;
+            text-align: left;
+        }
+
+        /* Input Field & Button */
+        #chat-input-container {
+            display: flex;
+            margin-top: 10px;
+            align-items: center;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        #send-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #send-btn:hover {
+            background-color: #0056b3;
+        }
+        .card-img-top {
+    width: 100%;
+    height: 200px;      /* Adjust the height as needed */
+    object-fit: cover;  /* Ensures the image covers the space without distortion */
+}
+        .card-img-top{
+    width: 100%;        /* Makes the image fill the width of the container */
+    height: 200px;      /* Adjust the height as needed */
+    object-fit: cover;  /* Ensures the image covers the space without distortion */
+}
+
+    </style>
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+        #chat-container { width: 400px; margin: auto; border: 1px solid #ddd; padding: 10px; border-radius: 10px; background: white; }
+        .message { text-align: left; padding: 5px; margin: 5px 0; }
+        .user { font-weight: bold; color: black; }
+        .bot { color: blue; }
+    </style>
+  </head>
+  <body>
+
+   {% include 'navbar.html' %}
+    <div class="container my-4">
+        <h2>Building a Symptom-Based Disease Diagnosis Web App with Flask and Machine Learning</h2>
+        <p>In the age of technology and information, access to accurate and timely healthcare is more critical than ever...</p>
+
+
+    <h2>Blog Page</h2>
+    <p>Welcome to the blog! Feel free to chat with our AI assistant.</p>
+
+    <div id="chat-container">
+        <h3 style="color: #007bff;">Chat with AI</h3>
+        <div id="chatbox"></div>
+        <div id="chat-input-container">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-btn" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userMessage = $("#user-input").val();
+            if (!userMessage) return;
+
+            $("#chatbox").append("<p class='message user'>User: " + userMessage + "</p>");
+            $("#user-input").val("");
+
+            $.ajax({
+                url: "/chatbot",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ message: userMessage }),
+                success: function(response) {
+                    $("#chatbox").append("<p class='message bot'>Bot: " + response.reply + "</p>");
+                },
+                error: function() {
+                    $("#chatbox").append("<p class='message bot'>Bot: Error connecting to chatbot.</p>");
+                }
+            });
+        }
+    </script>
+
+
+        <h3>The Problem</h3>
+        <p>The project began with recognizing a common issue: people often experience symptoms and want quick answers...</p>
+
+        <h3>The Solution</h3>
+        <p>We developed a web app that allows users to enter a list of symptoms they are experiencing...</p>
+
+        <ol>
+            <li><b>Symptom Input:</b> Users enter their symptoms through a user-friendly interface...</li>
+            <li><b>Machine Learning Model:</b> We trained a Decision Tree Classifier using a dataset...</li>
+            <li><b>Prediction:</b> The app uses the model to predict the most likely disease...</li>
+            <li><b>Additional Information:</b> The app provides descriptions, precautions, medications...</li>
+        </ol>
+
+        <h3>Key Features</h3>
+        <ul>
+            <li><b>User-Friendly Interface:</b> The web app boasts an intuitive and easy-to-navigate interface...</li>
+            <li><b>Accurate Predictions:</b> Leveraging machine learning, our model provides accurate predictions...</li>
+            <li><b>Comprehensive Information:</b> Includes descriptions, precautions, diet recommendations...</li>
+            <li><b>Educational Content:</b> The app includes informative blog posts about various health topics...</li>
+        </ul>
+
+        <h3>Conclusion</h3>
+        <p>Our Symptom-Based Disease Diagnosis Web App brings the power of machine learning and healthcare information...</p>
+    </div>
+
+   <!-- Health Articles and Blogs Section -->
+<section id="health-articles" class="my-5">
+    <h3 class="text-center">Latest Health Articles & Tips</h3>
+    <p class="text-center">Stay updated with the latest tips, news, and medical advice to improve your health.</p>
+
+    <!-- Article Cards -->
+    <div class="row">
+        <!-- Article 1 -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="https://cdn.who.int/media/images/default-source/mca/mca-covid-19/coronavirus-2.tmb-1366v.jpg?sfvrsn=4dba955c_19%201366w" class="card-img-top" alt="Health Article 1">
+                <div class="card-body">
+                    <h5 class="card-title">Coronavirus disease (COVID-19)</h5>
+                    <p class="card-text">Most people infected with the virus will experience mild to moderate respiratory illness and recover without requiring special treatment.</p>
+                    <a href="https://www.who.int/health-topics/coronavirus#tab=tab_1" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="https://pme.uchicago.edu/sites/default/files/styles/max_width_full/public/2021-03/iStock-1180568434%20%281%29.jpg?itok=aXUNgdkT" class="card-img-top" alt="Health Article 2">
+                <div class="card-body">
+                    <h5 class="card-title">Cancer</h5>
+                    <p class="card-text">Cancer is a leading cause of death worldwide, accounting for nearly 10 million deaths in 2020, or nearly one in six deaths.</p>
+                    <a href="https://www.who.int/news-room/fact-sheets/detail/cancer" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="https://cdn.who.int/media/images/default-source/mental-health-and-substance-abuse/adobestock_178067240_preview.tmb-1366v.jpeg?sfvrsn=8c73c66c_6%201366w" class="card-img-top" alt="Health Article 3">
+                <div class="card-body">
+                    <h5 class="card-title">The Importance of Mental Health</h5>
+                    <p class="card-text">Mental health is a state of mental well-being that enables people to cope with the stresses of life, realize their abilities, learn well and work well, and contribute to their community</p>
+                    <a href="https://www.who.int/health-topics/mental-health#tab=tab_1" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  </body>
+</html>

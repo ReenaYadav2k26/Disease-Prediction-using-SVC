@@ -1,0 +1,105 @@
+/* === Body & Background === */
+body {
+  background: linear-gradient(-45deg, #fff3e0, #ffe0b2, #ffd180, #fff8e1);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  padding-bottom: 50px;
+  margin: 0;
+}
+
+/* === Background Animation === */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* === Headings & Labels === */
+h1, h3, h4, label {
+  color: white;
+  font-weight: bold;
+}
+
+/* === Navbar === */
+.navbar {
+  background: rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* === Content Container === */
+.container {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* === Form Elements === */
+.form-control {
+  font-size: 1.1rem;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+/* === Buttons === */
+.btn, .toggle-button {
+  border-radius: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn:hover, .toggle-button:hover {
+  transform: scale(1.05);
+}
+
+/* === Transcription Box === */
+#transcription {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 10px;
+}
+
+/* === Auto-Suggestions === */
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  background: #fff;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+}
+
+.suggestion-item:hover {
+  background: #f1f1f1;
+}
+
+/* === Modal === */
+.modal-content {
+  background-color: #222;
+  color: white;
+}
+
+.modal-header {
+  background-color: #111;
+}
+
+.modal-body ul li {
+  color: #f5f5f5;
+}
+
+/* === Custom Text Colors === */
+.text-green-500 {
+  color: #57f542;
+}
+
+.text-yellow-500 {
+  color: #f5e642;
+}
+
+.text-red-500 {
+  color: #ff4d4d;
+}
